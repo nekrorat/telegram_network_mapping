@@ -5,8 +5,7 @@ Visualize Telegram channel networks
 
 To utilize script, you need to create .env file with the following variables. Phone number, api_id and api_hash are required (refer to Telegram API for more information)
 
-<code>
-phone=""
+<code>phone=""
 api_id=""
 api_hash=""
 </code>
