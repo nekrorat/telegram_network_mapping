@@ -15,7 +15,7 @@ client = TelegramClient(config['phone'], config['api_id'], config['api_hash'])
 
 #^ switch from offline to online
 from msg_scrapper import filename, target_channel
-#filename = f'./channels/group_project_LIMMA.json'
+#filename = f'./path/channel_name.json'
 
 # *1. Get telegram channels' names
 
