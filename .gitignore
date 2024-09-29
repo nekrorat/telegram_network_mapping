@@ -1,0 +1,13 @@
+.env
+
+channels_messages
+channels_output
+nodemaps
+
+*.html
+*.json
+*.session
+*.session-journal
+
+__pycache__
+lib

@@ -12,7 +12,7 @@ from telethon.tl.functions.messages import (GetHistoryRequest)
 from modules import config
 
 # initialize client object with credentials
-client = TelegramClient(config['phone'], config['api_id'], config['api_hash'])
+client = TelegramClient(config['PHONE'], int(config['API_ID']), config['API_HASH'])
 
 # *1---------------
 # datetime format to JSON
@@ -27,9 +27,13 @@ class DateTimeEncoder(json.JSONEncoder):
         return json.JSONEncoder.default(self, o)
 # *2---------------
 # open a file
-target_channel = 'readovkanews'
+target_channel = config['TARGET_CHANNEL']
 
-filename = f'./channels/{target_channel}.json'
+folder_path = r'./channel_messages'
+if not os.path.exists(folder_path):
+    os.makedirs(folder_path)
+
+filename = f'./{folder_path}/{target_channel}.json'
 # extract filename from the path
 #target_channel = re.findall('[^/]+(?=\.json)', filename)
 
@@ -92,17 +96,17 @@ async def main():
     # if there is JSON for the channel and it needs an update new messages do this
     if min_id != 0:
         #load JSON to file_data list
-        with open(f'./channels/{target_channel}.json') as json_file:
+        with open(f'{folder_path}/{target_channel}.json') as json_file:
             file_data = json.load(json_file) 
             # add new scrapped messaged to file_data list
             file_data = [*all_messages, *file_data]
         # save to JSON (raw)
-        with open(f'./channels/{target_channel}.json', 'w') as f:
+        with open(f'{folder_path}/{target_channel}.json', 'w') as f:
             json.dump(file_data, f, cls=DateTimeEncoder)
     #if the channel was never scrapped do this (has no JSON yet)
     else:
         #save to JSON (raw)
-        with open(f'./channels/{target_channel}.json', 'w') as f:
+        with open(f'{folder_path}/{target_channel}.json', 'w') as f:
             json.dump(all_messages, f, cls=DateTimeEncoder)
 
     #save to JSON (beautified)

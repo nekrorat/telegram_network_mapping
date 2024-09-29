@@ -24,7 +24,7 @@ for i in data:
 result_set = set(result_list)
 #print(result_set)
 
-g = Network(height='1500px', width='100%', bgcolor='#222222', font_color='white')
+g = Network(height='1500px', width='100%', bgcolor='#222222', font_color='white', notebook=False)
 
 g.add_node(d, label=f'{d}')
 
