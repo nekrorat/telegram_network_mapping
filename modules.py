@@ -4,9 +4,9 @@ from dotenv import dotenv_values
 
 #if .env exists 
 #.env format:
-#   phone="string"
-#   api_id="string"
-#   api_hash="string"
+#   PHONE="string"
+#   API_ID="string"
+#   API_HASH="string"
 #   
 if os.path.isfile('.env'):
     config = dotenv_values('.env')

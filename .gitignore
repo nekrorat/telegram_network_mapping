@@ -6,6 +6,7 @@ nodemaps
 
 *.html
 *.json
+*.csv
 *.session
 *.session-journal
 
