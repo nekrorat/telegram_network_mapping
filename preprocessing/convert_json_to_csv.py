@@ -1,8 +1,10 @@
 #1 convert json to csv
-import json
+import sys, os, json
 import pandas as pd
 
-with open('../channel_messages/nach_shtabu.json', 'r') as json_data:
+from modules import config
+
+with open(f'./channel_messages/{config["TARGET_CHANNEL"]}.json', 'r') as json_data:
     data = json.load(json_data)
 
 df = pd.json_normalize(data)

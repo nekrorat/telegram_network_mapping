@@ -1,0 +1,8 @@
+[project]
+name = "tel_visual"
+version = "0.1.0"
+description = "telegram network mapping"
+
+[build-system]
+build-backend = "flit_core.buildapi"
+requires = ["flit_core >=3.2,<4"]

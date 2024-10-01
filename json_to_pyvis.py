@@ -2,7 +2,9 @@
 import json
 from pyvis.network import Network
 
-f = open("channel_messages.json")
+from modules import config
+
+f = open(f"channel_messages/{config['TARGET_CHANNEL']}.json")
 data= json.load(f)
 
 # for i in data:
