@@ -9,7 +9,8 @@ from telethon.tl.functions.channels import GetFullChannelRequest
 import telethon
 
 # env variables
-from modules import config
+from utils.modules import config
+
 # initialize client object with credentials
 client = TelegramClient(config['PHONE'], int(config['API_ID']), config['API_HASH'])
 
@@ -27,7 +28,7 @@ data = json.loads(json_file)
 # source channel id.
 source_channel_id = (data[0]['peer_id']['channel_id'])
 
-# create a list for fwd channels' ids list with repeated occurence
+# create a list for fwd channels' ids list with repeated occurrence
 result_list = [source_channel_id]
 # create a set for unique fwd channels' ids list
 result_set = set()
@@ -43,7 +44,7 @@ for i in data:
                         for key_c, value_c in value_b.items():
                                 if key_c == 'channel_id':
                                         result_list.append(value_c)
-                #some msgs forwared from users not channels. find this instances and save user names
+                #some msgs forwarded from users not channels. find this instances and save usernames
                 elif i['fwd_from']['from_id'] is None:
                         result_list.append(i['fwd_from']['from_name'])
 
@@ -53,12 +54,12 @@ result_set = set(result_list)
 # *2. Get telegram channels' names
 result_dict = {}
 
-folder_path = r'./channel_network'
+folder_path = r'./src/channel_network'
 if not os.path.exists(folder_path):
     os.makedirs(folder_path)
 
-channel_names = f'{target_channel}_network.json'
-filepath = f'./{folder_path}/{channel_names}'
+file_name = f'{target_channel}_network.json'
+filepath = f'{folder_path}/{file_name}'
 
 # & OFFLINE if there is no json file request channel names from telegram api
 #^ delete NOT to force online, not = check if the json file exist
@@ -120,7 +121,7 @@ if not os.path.isfile(filepath):
                     #     print(e)
                     #     i == key
         
-        # once request to Telethon done, create a new channel_names JSON file and save result,
+        # once request to Telethon done, create a new channel_name JSON file and save result,
         # to use this JSON rather than send requests every time
         with open(filepath, 'w') as f:
             json.dump(result_dict, f, default=str)
@@ -139,7 +140,7 @@ else:
 
 #& OFFLINE Master List
 # create master list of channels
-master_list_file = 'master_list.json'
+master_list_file = './src/master_list.json'
 master_list_dict = {k: {sub_k: sub_v for sub_k,sub_v in v.items() if sub_k=='channel_name' or sub_k=='creation_date' or sub_k=='linked_chat_id' } for k,v in result_dict.items()}
 
 # if there is no master list exist -> create new
