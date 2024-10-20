@@ -2,4 +2,4 @@
 name = "tel_visual"
 version = "0.1"
 description = "telegram network mapping"
-dependencies = ['telethon', 'python-dotenv', 'pandas', 'pyvis']
+dependencies = ['telethon', 'python-dotenv', 'pandas', 'pyvis', 'spacy']

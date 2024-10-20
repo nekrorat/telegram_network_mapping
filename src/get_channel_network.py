@@ -177,8 +177,10 @@ participants_one_percent = one_percent('participants_count')
 
 # *3. Visualize in pyvis network
 
-g = Network(height='100%', width='100%',
-            bgcolor='#222222', font_color='white', notebook=True)
+g = Network(height='1000px', width='100%',
+            bgcolor='#222222', font_color='white',
+            notebook=True
+            )
 
 # build the source node
 g.add_node(int(source_channel_id),
@@ -291,8 +293,6 @@ g.force_atlas_2based()
 #      filter_=['physics', 'edges']
 #       )
 
-g.width = '50%'
-g.height = '100%'
 OPTIONS = """const options = {
   "edges": {
     "color": {
@@ -311,7 +311,7 @@ OPTIONS = """const options = {
     "enabled": false,
     "forceAtlas2Based": {
       "gravitationalConstant": -150,
-      "springLength": 200
+      "springLength": 500
     },
     "minVelocity": 0.75,
     "solver": "forceAtlas2Based"
@@ -342,7 +342,7 @@ OPTIONS = """const options = {
 #     "solver": "forceAtlas2Based"
 #   }
 # }"""
-g.set_options(OPTIONS)
+#g.set_options(OPTIONS)
 
 #g.toggle_physics(False)
 
